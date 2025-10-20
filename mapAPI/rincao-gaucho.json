@@ -1,0 +1,423 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2025-10-17T12:17:55Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "relation/9288943",
+        "IBGE:GEOCODIGO": "4307609006",
+        "admin_level": "10",
+        "boundary": "administrative",
+        "name": "Rincão Gaúcho",
+        "population": "1961",
+        "source": "Prefeitura Municipal 2014",
+        "source:population": "IBGE 2010",
+        "type": "boundary"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-51.1520186, -29.6519667],
+            [-51.1519334, -29.6519922],
+            [-51.1517456, -29.6521181],
+            [-51.1515968, -29.6522521],
+            [-51.1515136, -29.6523896],
+            [-51.1514492, -29.652512],
+            [-51.1514144, -29.6527404],
+            [-51.1514439, -29.653357],
+            [-51.1513942, -29.6536821],
+            [-51.1512695, -29.6539688],
+            [-51.1511193, -29.6542113],
+            [-51.1509785, -29.6543395],
+            [-51.1507478, -29.654498],
+            [-51.1491385, -29.6553977],
+            [-51.1466213, -29.6568568],
+            [-51.1463651, -29.6570048],
+            [-51.145657, -29.6572414],
+            [-51.1451782, -29.6573906],
+            [-51.144222, -29.6576225],
+            [-51.1444125, -29.6556075],
+            [-51.1445286, -29.6548116],
+            [-51.1445527, -29.6546822],
+            [-51.1445961, -29.654387],
+            [-51.1446628, -29.6538362],
+            [-51.1447383, -29.6530526],
+            [-51.144736, -29.6529878],
+            [-51.1446938, -29.6526728],
+            [-51.1446835, -29.6525394],
+            [-51.1446527, -29.6522628],
+            [-51.1446225, -29.6520287],
+            [-51.144569, -29.6517627],
+            [-51.1445105, -29.6515211],
+            [-51.1444588, -29.6513348],
+            [-51.1443389, -29.6502903],
+            [-51.1442837, -29.6500342],
+            [-51.1442556, -29.6498874],
+            [-51.1441833, -29.6494643],
+            [-51.1440996, -29.6489715],
+            [-51.1440283, -29.6485364],
+            [-51.143915, -29.6480875],
+            [-51.143854, -29.6479294],
+            [-51.1438105, -29.6477116],
+            [-51.1436921, -29.6471039],
+            [-51.1435009, -29.646123],
+            [-51.1433805, -29.6454625],
+            [-51.143244, -29.6447652],
+            [-51.1431737, -29.6444048],
+            [-51.1431609, -29.644339],
+            [-51.1425886, -29.6413881],
+            [-51.1423726, -29.6403239],
+            [-51.1420763, -29.6388144],
+            [-51.1419609, -29.6382759],
+            [-51.1419207, -29.6380276],
+            [-51.1418939, -29.6378807],
+            [-51.1526871, -29.6365157],
+            [-51.1547738, -29.6518477],
+            [-51.1545271, -29.651878],
+            [-51.1539283, -29.6518768],
+            [-51.1524189, -29.6518873],
+            [-51.1521828, -29.6519176],
+            [-51.1520186, -29.6519667]
+          ]
+        ]
+      },
+      "id": "relation/9288943"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/91891004",
+        "highway": "primary",
+        "lanes": "2",
+        "lit": "no",
+        "maxspeed": "60",
+        "ref": "BR-116",
+        "source:maxspeed": "sign",
+        "surface": "asphalt",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288943,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609006",
+              "admin_level": "10",
+              "boundary": "administrative",
+              "name": "Rincão Gaúcho",
+              "population": "1961",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1418939, -29.6378807],
+          [-51.1419207, -29.6380276],
+          [-51.1419609, -29.6382759],
+          [-51.1420763, -29.6388144],
+          [-51.1423726, -29.6403239],
+          [-51.1425886, -29.6413881],
+          [-51.1431609, -29.644339],
+          [-51.1431737, -29.6444048],
+          [-51.143244, -29.6447652],
+          [-51.1433805, -29.6454625],
+          [-51.1435009, -29.646123],
+          [-51.1436921, -29.6471039],
+          [-51.1438105, -29.6477116],
+          [-51.143854, -29.6479294]
+        ]
+      },
+      "id": "way/91891004"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/292967512",
+        "highway": "primary",
+        "lanes": "3",
+        "lit": "no",
+        "maxspeed": "60",
+        "oneway": "yes",
+        "ref": "BR-116",
+        "source:maxspeed": "sign",
+        "surface": "asphalt",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288943,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609006",
+              "admin_level": "10",
+              "boundary": "administrative",
+              "name": "Rincão Gaúcho",
+              "population": "1961",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1442556, -29.6498874],
+          [-51.1442837, -29.6500342]
+        ]
+      },
+      "id": "way/292967512"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/292967513",
+        "highway": "primary",
+        "lanes": "2",
+        "lit": "no",
+        "maxspeed": "60",
+        "oneway": "yes",
+        "ref": "BR-116",
+        "source:maxspeed": "sign",
+        "surface": "asphalt",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288943,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609006",
+              "admin_level": "10",
+              "boundary": "administrative",
+              "name": "Rincão Gaúcho",
+              "population": "1961",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1442837, -29.6500342],
+          [-51.1443389, -29.6502903],
+          [-51.1444588, -29.6513348]
+        ]
+      },
+      "id": "way/292967513"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/302394482",
+        "highway": "primary",
+        "lanes": "3",
+        "lit": "no",
+        "maxspeed": "60",
+        "oneway": "yes",
+        "ref": "BR-116",
+        "source:maxspeed": "sign",
+        "surface": "asphalt",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288943,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609006",
+              "admin_level": "10",
+              "boundary": "administrative",
+              "name": "Rincão Gaúcho",
+              "population": "1961",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1441833, -29.6494643],
+          [-51.1442556, -29.6498874]
+        ]
+      },
+      "id": "way/302394482"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/302394483",
+        "highway": "primary",
+        "lanes": "3",
+        "lanes:backward": "1",
+        "lanes:forward": "2",
+        "lit": "no",
+        "maxspeed": "60",
+        "ref": "BR-116",
+        "source:maxspeed": "sign",
+        "surface": "asphalt",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288943,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609006",
+              "admin_level": "10",
+              "boundary": "administrative",
+              "name": "Rincão Gaúcho",
+              "population": "1961",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1444588, -29.6513348],
+          [-51.1445105, -29.6515211],
+          [-51.144569, -29.6517627],
+          [-51.1446225, -29.6520287],
+          [-51.1446527, -29.6522628],
+          [-51.1446835, -29.6525394],
+          [-51.1446938, -29.6526728]
+        ]
+      },
+      "id": "way/302394483"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/604047663",
+        "highway": "primary",
+        "lanes": "2",
+        "lit": "no",
+        "maxspeed": "60",
+        "ref": "BR-116",
+        "source:maxspeed": "sign",
+        "surface": "asphalt",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288943,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609006",
+              "admin_level": "10",
+              "boundary": "administrative",
+              "name": "Rincão Gaúcho",
+              "population": "1961",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1446938, -29.6526728],
+          [-51.144736, -29.6529878],
+          [-51.1447383, -29.6530526],
+          [-51.1446628, -29.6538362],
+          [-51.1445961, -29.654387],
+          [-51.1445527, -29.6546822],
+          [-51.1445286, -29.6548116]
+        ]
+      },
+      "id": "way/604047663"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1131203728",
+        "highway": "primary",
+        "lanes": "2",
+        "lit": "no",
+        "maxspeed": "60",
+        "oneway": "yes",
+        "ref": "BR-116",
+        "source:maxspeed": "sign",
+        "surface": "asphalt",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288943,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609006",
+              "admin_level": "10",
+              "boundary": "administrative",
+              "name": "Rincão Gaúcho",
+              "population": "1961",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.143854, -29.6479294],
+          [-51.143915, -29.6480875],
+          [-51.1440283, -29.6485364],
+          [-51.1440996, -29.6489715],
+          [-51.1441833, -29.6494643]
+        ]
+      },
+      "id": "way/1131203728"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1067772283",
+        "highway": "traffic_signals"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-51.1442556, -29.6498874]
+      },
+      "id": "node/1067772283"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5312991047",
+        "name": "Rincão Gaúcho",
+        "place": "suburb",
+        "@relations": [
+          {
+            "role": "label",
+            "rel": 9288943,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609006",
+              "admin_level": "10",
+              "boundary": "administrative",
+              "name": "Rincão Gaúcho",
+              "population": "1961",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-51.1482107, -29.6463586]
+      },
+      "id": "node/5312991047"
+    }
+  ]
+}

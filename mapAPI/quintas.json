@@ -1,0 +1,434 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2025-10-17T13:15:56Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "relation/9288953",
+        "IBGE:GEOCODIGO": "4307609015",
+        "admin_level": "10",
+        "alt_name": "Bairro das Quintas",
+        "boundary": "administrative",
+        "name": "Quintas",
+        "population": "1070",
+        "source": "Prefeitura Municipal 2014",
+        "source:population": "IBGE 2010",
+        "type": "boundary"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-51.1957959, -29.6635866],
+            [-51.1957446, -29.6635464],
+            [-51.1957104, -29.6635187],
+            [-51.1955803, -29.6632548],
+            [-51.1955112, -29.6629121],
+            [-51.1954884, -29.6627805],
+            [-51.1954388, -29.6625533],
+            [-51.195365, -29.6620999],
+            [-51.1952068, -29.6611455],
+            [-51.1951438, -29.6607656],
+            [-51.1950821, -29.6604684],
+            [-51.1949772, -29.659803],
+            [-51.1949607, -29.6597072],
+            [-51.1947347, -29.6583276],
+            [-51.1946999, -29.6581656],
+            [-51.1946274, -29.6579884],
+            [-51.1943901, -29.6576633],
+            [-51.194343, -29.6575946],
+            [-51.1937664, -29.6567531],
+            [-51.1935532, -29.6564955],
+            [-51.1931643, -29.6560597],
+            [-51.1929262, -29.6558213],
+            [-51.1928683, -29.655758],
+            [-51.1930543, -29.6557193],
+            [-51.1938536, -29.6556541],
+            [-51.193081, -29.6506221],
+            [-51.1938562, -29.6510091],
+            [-51.1944329, -29.6515079],
+            [-51.1949022, -29.6519974],
+            [-51.1953287, -29.6525219],
+            [-51.1951892, -29.6527759],
+            [-51.1959027, -29.6532281],
+            [-51.1956264, -29.6535218],
+            [-51.1963292, -29.6538021],
+            [-51.1985178, -29.6563342],
+            [-51.1990077, -29.6569293],
+            [-51.1993413, -29.6574871],
+            [-51.1994643, -29.6579464],
+            [-51.1994674, -29.6582692],
+            [-51.1993872, -29.658609],
+            [-51.1993628, -29.6588962],
+            [-51.1993939, -29.6592248],
+            [-51.1997008, -29.659705],
+            [-51.1999582, -29.6599777],
+            [-51.2009077, -29.6608261],
+            [-51.2011105, -29.6610801],
+            [-51.2012591, -29.6614997],
+            [-51.2012795, -29.662052],
+            [-51.2013331, -29.6627535],
+            [-51.2015531, -29.6632943],
+            [-51.2018063, -29.663637],
+            [-51.2019351, -29.6637759],
+            [-51.2019351, -29.6638188],
+            [-51.2018317, -29.6638072],
+            [-51.2014081, -29.6637512],
+            [-51.2011989, -29.6637489],
+            [-51.2008326, -29.663782],
+            [-51.2002049, -29.6638386],
+            [-51.1997279, -29.6638632],
+            [-51.1992553, -29.6638632],
+            [-51.1983101, -29.6638584],
+            [-51.1976333, -29.6638621],
+            [-51.1971971, -29.6638752],
+            [-51.1967497, -29.6638887],
+            [-51.196547, -29.6638208],
+            [-51.1963654, -29.6637599],
+            [-51.196277, -29.6637303],
+            [-51.1959855, -29.6636417],
+            [-51.1957959, -29.6635866]
+          ]
+        ]
+      },
+      "id": "relation/9288953"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/183666532",
+        "highway": "primary",
+        "maxspeed": "60",
+        "name": "Rua Portão",
+        "ref": "ERS-239",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288953,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609015",
+              "admin_level": "10",
+              "alt_name": "Bairro das Quintas",
+              "boundary": "administrative",
+              "name": "Quintas",
+              "population": "1070",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1955803, -29.6632548],
+          [-51.1955112, -29.6629121],
+          [-51.1954884, -29.6627805],
+          [-51.1954388, -29.6625533],
+          [-51.195365, -29.6620999],
+          [-51.1952068, -29.6611455],
+          [-51.1951438, -29.6607656],
+          [-51.1950821, -29.6604684],
+          [-51.1949772, -29.659803],
+          [-51.1949607, -29.6597072],
+          [-51.1947347, -29.6583276]
+        ]
+      },
+      "id": "way/183666532"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/206913633",
+        "alt_name": "Avenida Campo Grande",
+        "highway": "secondary",
+        "name": "Rua Campo Grande",
+        "source": "Bing; CNEFE 2010",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288953,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609015",
+              "admin_level": "10",
+              "alt_name": "Bairro das Quintas",
+              "boundary": "administrative",
+              "name": "Quintas",
+              "population": "1070",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.2019351, -29.6638188],
+          [-51.2018317, -29.6638072],
+          [-51.2014081, -29.6637512],
+          [-51.2011989, -29.6637489],
+          [-51.2008326, -29.663782],
+          [-51.2002049, -29.6638386],
+          [-51.1997279, -29.6638632],
+          [-51.1992553, -29.6638632],
+          [-51.1983101, -29.6638584],
+          [-51.1976333, -29.6638621],
+          [-51.1971971, -29.6638752]
+        ]
+      },
+      "id": "way/206913633"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/406498694",
+        "highway": "primary",
+        "maxspeed": "60",
+        "name": "Rua Portão",
+        "ref": "ERS-239",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288953,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609015",
+              "admin_level": "10",
+              "alt_name": "Bairro das Quintas",
+              "boundary": "administrative",
+              "name": "Quintas",
+              "population": "1070",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1947347, -29.6583276],
+          [-51.1946999, -29.6581656],
+          [-51.1946274, -29.6579884],
+          [-51.1943901, -29.6576633],
+          [-51.194343, -29.6575946],
+          [-51.1937664, -29.6567531],
+          [-51.1935532, -29.6564955],
+          [-51.1931643, -29.6560597],
+          [-51.1929262, -29.6558213]
+        ]
+      },
+      "id": "way/406498694"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/667937042",
+        "name": "Arroio Portão",
+        "source": "IBGE;SNIRH",
+        "waterway": "stream",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288953,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609015",
+              "admin_level": "10",
+              "alt_name": "Bairro das Quintas",
+              "boundary": "administrative",
+              "name": "Quintas",
+              "population": "1070",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.193081, -29.6506221],
+          [-51.1938562, -29.6510091],
+          [-51.1944329, -29.6515079]
+        ]
+      },
+      "id": "way/667937042"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/667937058",
+        "name": "Arroio Portão",
+        "source": "IBGE;SNIRH",
+        "waterway": "stream",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288953,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609015",
+              "admin_level": "10",
+              "alt_name": "Bairro das Quintas",
+              "boundary": "administrative",
+              "name": "Quintas",
+              "population": "1070",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1944329, -29.6515079],
+          [-51.1949022, -29.6519974],
+          [-51.1953287, -29.6525219],
+          [-51.1951892, -29.6527759],
+          [-51.1959027, -29.6532281],
+          [-51.1956264, -29.6535218],
+          [-51.1963292, -29.6538021],
+          [-51.1985178, -29.6563342],
+          [-51.1990077, -29.6569293],
+          [-51.1993413, -29.6574871],
+          [-51.1994643, -29.6579464],
+          [-51.1994674, -29.6582692],
+          [-51.1993872, -29.658609],
+          [-51.1993628, -29.6588962],
+          [-51.1993939, -29.6592248],
+          [-51.1997008, -29.659705],
+          [-51.1999582, -29.6599777],
+          [-51.2009077, -29.6608261],
+          [-51.2011105, -29.6610801],
+          [-51.2012591, -29.6614997],
+          [-51.2012795, -29.662052],
+          [-51.2013331, -29.6627535],
+          [-51.2015531, -29.6632943],
+          [-51.2018063, -29.663637],
+          [-51.2019351, -29.6637759]
+        ]
+      },
+      "id": "way/667937058"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/667937061",
+        "highway": "primary",
+        "maxspeed": "60",
+        "name": "Rua Portão",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288953,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609015",
+              "admin_level": "10",
+              "alt_name": "Bairro das Quintas",
+              "boundary": "administrative",
+              "name": "Quintas",
+              "population": "1070",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1928683, -29.655758],
+          [-51.1929262, -29.6558213]
+        ]
+      },
+      "id": "way/667937061"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/794650738",
+        "traffic_calming": "bump"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-51.1946274, -29.6579884]
+      },
+      "id": "node/794650738"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/794650797",
+        "traffic_calming": "bump"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-51.1946999, -29.6581656]
+      },
+      "id": "node/794650797"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1940765674",
+        "traffic_calming": "bump"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-51.1951438, -29.6607656]
+      },
+      "id": "node/1940765674"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1940765698",
+        "traffic_calming": "bump"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-51.1954388, -29.6625533]
+      },
+      "id": "node/1940765698"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5312991015",
+        "name": "Quintas",
+        "place": "suburb",
+        "@relations": [
+          {
+            "role": "label",
+            "rel": 9288953,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609015",
+              "admin_level": "10",
+              "alt_name": "Bairro das Quintas",
+              "boundary": "administrative",
+              "name": "Quintas",
+              "population": "1070",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-51.1969855, -29.6584997]
+      },
+      "id": "node/5312991015"
+    }
+  ]
+}

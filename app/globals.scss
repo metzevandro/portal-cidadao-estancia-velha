@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+
+:root {
+  --b-color-darkness: #0b3d2e;
+  --b-color-dark: #12694f;
+  --b-color-medium: #1b8c66;
+  --b-color-base: #24b57f;
+  --b-color-soft: #6ed6ae;
+  --b-color-light: #b6ecd6;
+  --b-color-lightness: #e6f8ef;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+.pagina-inicial {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  padding: var(--s-spacing-medium);
+
+  .mapa {
+    max-width: 1440px;
+    width: 100%;
+  }
+}

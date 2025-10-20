@@ -1,0 +1,78 @@
+.marker-info-container {
+  position: relative;
+  cursor: pointer;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    width 0.3s ease-in-out,
+    height 0.3s ease,
+    padding 0s ease,
+    border-radius 0.3s ease,
+    transform 0.3s ease;
+
+  &.open {
+    width: 200px;
+    padding: 8px;
+    border-radius: 12px;
+    flex-direction: column;
+  }
+
+  &:not(.open) {
+    width: 40px;
+    min-height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    flex-direction: row;
+  }
+
+  .marker-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+
+  .info-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-spacing-xx-small);
+
+    img {
+      width: 100%;
+      object-fit: cover;
+      max-height: 100px;
+      border-radius: 6px;
+    }
+  }
+}
+
+.infoWindow {
+  padding: var(--s-spacing-xx-small);
+
+  &.highlight {
+    animation: pulse 0.6s ease-in-out;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    background-color: rgba(255, 255, 0, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 0, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    background-color: rgba(255, 255, 0, 0.3);
+  }
+}

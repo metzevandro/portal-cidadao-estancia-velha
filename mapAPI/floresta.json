@@ -1,0 +1,194 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2025-10-17T12:16:53Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "relation/9288945",
+        "IBGE:GEOCODIGO": "4307609004",
+        "admin_level": "10",
+        "boundary": "administrative",
+        "name": "Floresta",
+        "population": "2719",
+        "source": "Prefeitura Municipal 2014",
+        "source:population": "IBGE 2010",
+        "type": "boundary"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-51.1652699, -29.6491571],
+            [-51.1653897, -29.6500033],
+            [-51.1655079, -29.6507461],
+            [-51.1656208, -29.6514852],
+            [-51.1658462, -29.6529704],
+            [-51.1658687, -29.6530529],
+            [-51.1651098, -29.6531869],
+            [-51.1648521, -29.6532325],
+            [-51.1646363, -29.6532649],
+            [-51.1645398, -29.6534118],
+            [-51.1641321, -29.6532929],
+            [-51.1617261, -29.6521134],
+            [-51.1614445, -29.6519992],
+            [-51.1612058, -29.6519339],
+            [-51.1609563, -29.6518896],
+            [-51.1607981, -29.6518827],
+            [-51.1605835, -29.6518873],
+            [-51.1585692, -29.6521694],
+            [-51.1581856, -29.652202],
+            [-51.1579147, -29.652181],
+            [-51.1574185, -29.6520808],
+            [-51.1569142, -29.6518663],
+            [-51.1564422, -29.6517381],
+            [-51.1561498, -29.6517078],
+            [-51.1557931, -29.6517078],
+            [-51.1547738, -29.6518477],
+            [-51.1526871, -29.6365157],
+            [-51.1639309, -29.6354247],
+            [-51.165032, -29.6474302],
+            [-51.165172, -29.6482603],
+            [-51.1652921, -29.6489702],
+            [-51.1652699, -29.6491571]
+          ]
+        ]
+      },
+      "id": "relation/9288945"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/183671426",
+        "highway": "residential",
+        "name": "Rua Olavo Bilac",
+        "source": "Bing",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288945,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609004",
+              "admin_level": "10",
+              "boundary": "administrative",
+              "name": "Floresta",
+              "population": "2719",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1652699, -29.6491571],
+          [-51.1653897, -29.6500033],
+          [-51.1655079, -29.6507461],
+          [-51.1656208, -29.6514852],
+          [-51.1658462, -29.6529704]
+        ]
+      },
+      "id": "way/183671426"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/667937082",
+        "highway": "service",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288945,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609004",
+              "admin_level": "10",
+              "boundary": "administrative",
+              "name": "Floresta",
+              "population": "2719",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1658687, -29.6530529],
+          [-51.1651098, -29.6531869],
+          [-51.1648521, -29.6532325]
+        ]
+      },
+      "id": "way/667937082"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/667937085",
+        "highway": "residential",
+        "name": "Rua Olavo Bilac",
+        "source": "Bing",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288945,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609004",
+              "admin_level": "10",
+              "boundary": "administrative",
+              "name": "Floresta",
+              "population": "2719",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.165032, -29.6474302],
+          [-51.165172, -29.6482603],
+          [-51.1652921, -29.6489702],
+          [-51.1652699, -29.6491571]
+        ]
+      },
+      "id": "way/667937085"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5312991048",
+        "name": "Floresta",
+        "place": "suburb",
+        "@relations": [
+          {
+            "role": "label",
+            "rel": 9288945,
+            "reltags": {
+              "IBGE:GEOCODIGO": "4307609004",
+              "admin_level": "10",
+              "boundary": "administrative",
+              "name": "Floresta",
+              "population": "2719",
+              "source": "Prefeitura Municipal 2014",
+              "source:population": "IBGE 2010",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-51.158932, -29.644543]
+      },
+      "id": "node/5312991048"
+    }
+  ]
+}

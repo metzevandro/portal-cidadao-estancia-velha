@@ -1,0 +1,396 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2025-10-17T12:21:59Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "relation/9288940",
+        "admin_level": "10",
+        "alt_name": "Bairro das Pedras",
+        "boundary": "administrative",
+        "name": "Pedras",
+        "source": "Prefeitura Municipal 2014",
+        "type": "boundary"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-51.1422843, -29.6360815],
+            [-51.1425951, -29.635151],
+            [-51.1429697, -29.6339757],
+            [-51.1430824, -29.6336222],
+            [-51.1432506, -29.6330853],
+            [-51.1433664, -29.6327156],
+            [-51.143416, -29.6325567],
+            [-51.1436266, -29.631881],
+            [-51.1436593, -29.6316923],
+            [-51.1436917, -29.6314891],
+            [-51.1437248, -29.6307212],
+            [-51.1437545, -29.6297119],
+            [-51.1437634, -29.6291543],
+            [-51.1437412, -29.6288928],
+            [-51.1436707, -29.628769],
+            [-51.1435568, -29.6286286],
+            [-51.1434221, -29.6284945],
+            [-51.1432698, -29.6284071],
+            [-51.1430541, -29.6283258],
+            [-51.1427528, -29.62828],
+            [-51.1412582, -29.6282975],
+            [-51.1410101, -29.6283004],
+            [-51.1397345, -29.6283153],
+            [-51.1395334, -29.6282658],
+            [-51.1393766, -29.6281821],
+            [-51.1391886, -29.6280728],
+            [-51.1390293, -29.6279361],
+            [-51.1388176, -29.6276869],
+            [-51.1386421, -29.6274424],
+            [-51.1389676, -29.6274092],
+            [-51.1400278, -29.6273139],
+            [-51.1418033, -29.6270939],
+            [-51.1439722, -29.6268515],
+            [-51.1447961, -29.6267469],
+            [-51.1461254, -29.6266092],
+            [-51.1478559, -29.6263804],
+            [-51.1485312, -29.6263077],
+            [-51.1487471, -29.6262844],
+            [-51.1497455, -29.6261606],
+            [-51.1515041, -29.6259273],
+            [-51.1536403, -29.6256909],
+            [-51.1550013, -29.6254916],
+            [-51.1563911, -29.625336],
+            [-51.1577544, -29.6251695],
+            [-51.1591329, -29.6250026],
+            [-51.1602136, -29.6248777],
+            [-51.1605006, -29.6248347],
+            [-51.1615903, -29.6247102],
+            [-51.1633421, -29.6244957],
+            [-51.1639309, -29.6354247],
+            [-51.1526871, -29.6365157],
+            [-51.1418939, -29.6378807],
+            [-51.1418757, -29.637759],
+            [-51.1418818, -29.6376546],
+            [-51.1419059, -29.6374226],
+            [-51.1420065, -29.6369937],
+            [-51.1421594, -29.6364505],
+            [-51.1422843, -29.6360815]
+          ]
+        ]
+      },
+      "id": "relation/9288940"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/64776302",
+        "highway": "residential",
+        "maxspeed": "40",
+        "name": "Avenida Perimetral",
+        "surface": "unpaved",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288940,
+            "reltags": {
+              "admin_level": "10",
+              "alt_name": "Bairro das Pedras",
+              "boundary": "administrative",
+              "name": "Pedras",
+              "source": "Prefeitura Municipal 2014",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1389676, -29.6274092],
+          [-51.1400278, -29.6273139],
+          [-51.1418033, -29.6270939],
+          [-51.1439722, -29.6268515],
+          [-51.1447961, -29.6267469],
+          [-51.1461254, -29.6266092],
+          [-51.1478559, -29.6263804],
+          [-51.1485312, -29.6263077],
+          [-51.1487471, -29.6262844],
+          [-51.1497455, -29.6261606],
+          [-51.1515041, -29.6259273],
+          [-51.1536403, -29.6256909],
+          [-51.1550013, -29.6254916],
+          [-51.1563911, -29.625336],
+          [-51.1577544, -29.6251695],
+          [-51.1591329, -29.6250026],
+          [-51.1602136, -29.6248777],
+          [-51.1605006, -29.6248347],
+          [-51.1615903, -29.6247102],
+          [-51.1633421, -29.6244957]
+        ]
+      },
+      "id": "way/64776302"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/91890976",
+        "highway": "primary",
+        "lanes": "2",
+        "lit": "no",
+        "maxspeed": "60",
+        "ref": "BR-116",
+        "surface": "asphalt",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288940,
+            "reltags": {
+              "admin_level": "10",
+              "alt_name": "Bairro das Pedras",
+              "boundary": "administrative",
+              "name": "Pedras",
+              "source": "Prefeitura Municipal 2014",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1388176, -29.6276869],
+          [-51.1390293, -29.6279361],
+          [-51.1391886, -29.6280728],
+          [-51.1393766, -29.6281821],
+          [-51.1395334, -29.6282658],
+          [-51.1397345, -29.6283153],
+          [-51.1410101, -29.6283004],
+          [-51.1412582, -29.6282975],
+          [-51.1427528, -29.62828],
+          [-51.1430541, -29.6283258]
+        ]
+      },
+      "id": "way/91890976"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/91891015",
+        "highway": "primary",
+        "lanes": "2",
+        "lit": "no",
+        "maxspeed": "60",
+        "ref": "BR-116",
+        "surface": "asphalt",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288940,
+            "reltags": {
+              "admin_level": "10",
+              "alt_name": "Bairro das Pedras",
+              "boundary": "administrative",
+              "name": "Pedras",
+              "source": "Prefeitura Municipal 2014",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1437545, -29.6297119],
+          [-51.1437248, -29.6307212],
+          [-51.1436917, -29.6314891],
+          [-51.1436593, -29.6316923],
+          [-51.1436266, -29.631881],
+          [-51.143416, -29.6325567],
+          [-51.1433664, -29.6327156],
+          [-51.1432506, -29.6330853],
+          [-51.1430824, -29.6336222],
+          [-51.1429697, -29.6339757],
+          [-51.1425951, -29.635151],
+          [-51.1422843, -29.6360815]
+        ]
+      },
+      "id": "way/91891015"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/91891026",
+        "highway": "primary",
+        "lanes": "2",
+        "lit": "no",
+        "maxspeed": "60",
+        "ref": "BR-116",
+        "surface": "asphalt",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288940,
+            "reltags": {
+              "admin_level": "10",
+              "alt_name": "Bairro das Pedras",
+              "boundary": "administrative",
+              "name": "Pedras",
+              "source": "Prefeitura Municipal 2014",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1430541, -29.6283258],
+          [-51.1432698, -29.6284071],
+          [-51.1434221, -29.6284945],
+          [-51.1435568, -29.6286286],
+          [-51.1436707, -29.628769],
+          [-51.1437412, -29.6288928],
+          [-51.1437634, -29.6291543],
+          [-51.1437545, -29.6297119]
+        ]
+      },
+      "id": "way/91891026"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/667937015",
+        "highway": "primary",
+        "lanes": "2",
+        "lit": "no",
+        "maxspeed": "60",
+        "ref": "BR-116",
+        "source:maxspeed": "sign",
+        "surface": "asphalt",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288940,
+            "reltags": {
+              "admin_level": "10",
+              "alt_name": "Bairro das Pedras",
+              "boundary": "administrative",
+              "name": "Pedras",
+              "source": "Prefeitura Municipal 2014",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1422843, -29.6360815],
+          [-51.1421594, -29.6364505],
+          [-51.1420065, -29.6369937],
+          [-51.1419059, -29.6374226],
+          [-51.1418818, -29.6376546],
+          [-51.1418757, -29.637759],
+          [-51.1418939, -29.6378807]
+        ]
+      },
+      "id": "way/667937015"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/932715938",
+        "highway": "residential",
+        "maxspeed": "40",
+        "name": "Avenida Perimetral",
+        "surface": "unpaved",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288940,
+            "reltags": {
+              "admin_level": "10",
+              "alt_name": "Bairro das Pedras",
+              "boundary": "administrative",
+              "name": "Pedras",
+              "source": "Prefeitura Municipal 2014",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1386421, -29.6274424],
+          [-51.1389676, -29.6274092]
+        ]
+      },
+      "id": "way/932715938"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/932715939",
+        "highway": "primary",
+        "lanes": "2",
+        "lit": "no",
+        "maxspeed": "60",
+        "ref": "BR-116",
+        "surface": "asphalt",
+        "@relations": [
+          {
+            "role": "outer",
+            "rel": 9288940,
+            "reltags": {
+              "admin_level": "10",
+              "alt_name": "Bairro das Pedras",
+              "boundary": "administrative",
+              "name": "Pedras",
+              "source": "Prefeitura Municipal 2014",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-51.1386421, -29.6274424],
+          [-51.1388176, -29.6276869]
+        ]
+      },
+      "id": "way/932715939"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6254394906",
+        "alt_name": "Bairro das Pedras",
+        "name": "Pedras",
+        "place": "suburb",
+        "@relations": [
+          {
+            "role": "label",
+            "rel": 9288940,
+            "reltags": {
+              "admin_level": "10",
+              "alt_name": "Bairro das Pedras",
+              "boundary": "administrative",
+              "name": "Pedras",
+              "source": "Prefeitura Municipal 2014",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-51.1535883, -29.6316664]
+      },
+      "id": "node/6254394906"
+    }
+  ]
+}
