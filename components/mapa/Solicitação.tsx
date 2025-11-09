@@ -83,7 +83,7 @@ export function SolicitacaoMapa({
     variant: "primary" | "secondary" | "warning" | "success",
     icon: string,
   ) => {
-    if (!title && !message) return;
+    if (title === '' && message === '') return;
     setNotificationTitle(title);
     setNotificationVariant(variant);
     setNotificationMessage(message);
