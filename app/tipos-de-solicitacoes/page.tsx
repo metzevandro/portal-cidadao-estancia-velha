@@ -221,6 +221,8 @@ export default function TiposDeSolicitacoesPage() {
     }
   }
 
+  if (typeof window === "undefined") return null;
+
   return (
     <>
       <Page
