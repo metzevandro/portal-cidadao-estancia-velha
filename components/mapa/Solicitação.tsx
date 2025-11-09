@@ -1,30 +1,50 @@
-import { useState, useRef } from "react";
+"use client";
+import { useState, useRef, useEffect, MutableRefObject } from "react";
 import { useLoadScript } from "@react-google-maps/api";
-import limites from "../../mapAPI/estancia-velha-limites.json";
-import { bairrosBounds, findNeighborhood } from "@/types/bairros";
+import limites from "../../mapAPI/estancia-velha.json";
 import { cidadeBounds } from "@/types/cidade";
 import { Solicitacao } from "./types";
 import { MapComponents } from "./Mapa";
 import { AsideForm } from "./Aside";
 import { NotificationMap } from "./Notification";
+import {
+  collection,
+  query,
+  orderBy,
+  onSnapshot,
+  DocumentData,
+  QuerySnapshot,
+  serverTimestamp,
+  addDoc,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import { useUser } from "@/app/_context";
+import { Skeleton } from "design-system-zeroz";
 
-import { db, storage, auth } from "@/lib/firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-
+const LIBRARIES = ["places"] as const;
 
 export function SolicitacaoMapa({
-  local,
   loggedIn,
+  onNovaSolicitacao,
+  onOpenAside,
+  userId,
 }: {
-  local: string;
   loggedIn: boolean;
+  onNovaSolicitacao?: () => void;
+  onOpenAside?: MutableRefObject<((shouldOpen: boolean) => void) | null>;
+  userId?: string;
 }) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
-    libraries: ["places"],
+    libraries: LIBRARIES as unknown as any,
   });
+  const [marcadorAberto, setMarcadorAberto] = useState(false);
 
+  const [editingMarker, setEditingMarker] = useState<Solicitacao | null>(null);
+  const currentUser = useUser();
   const [solicitacoes, setSolicitacoes] = useState<Solicitacao[]>([]);
   const [formVisible, setFormVisible] = useState(false);
   const [newMarker, setNewMarker] = useState<{
@@ -34,28 +54,40 @@ export function SolicitacaoMapa({
   const [tipo, setTipo] = useState("");
   const [descricao, setDescricao] = useState("");
   const [imageUrl, setImageUrl] = useState<string>("");
+  const [cep, setCep] = useState("");
+  const [rua, setRua] = useState("");
+  const [numero, setNumero] = useState("");
+
   const [imageFile, setImageFile] = useState<FileList | null>(null);
-  const [zoom, setZoom] = useState(15);
+  const [zoom, setZoom] = useState(10);
   const [notificationOpen, setNotificationOpen] = useState(false);
+  const [notificationVariant, setNotificationVariant] = useState<
+    "primary" | "secondary" | "warning" | "success"
+  >("primary");
   const [notificationTitle, setNotificationTitle] = useState("");
+  const [notificationIcon, setNotificationIcon] = useState("");
+
+  const [bairro, setBairro] = useState("");
   const [notificationMessage, setNotificationMessage] = useState("");
-  const [bairroSelecionado, setBairroSelecionado] = useState("");
-  const [searchBox, setSearchBox] =
-    useState<google.maps.places.SearchBox | null>(null);
+
   const mapRef = useRef<google.maps.Map | null>(null);
 
-  let polygonCoords: { lat: number; lng: number }[] = [];
-  if (bairrosBounds[local]) {
-    polygonCoords = bairrosBounds[local];
-  } else {
-    polygonCoords = (
-      limites.features[0].geometry.coordinates[0] as [number, number][]
-    ).map((coord) => ({ lat: coord[1], lng: coord[0] }));
-  }
+  const [loadingSolicitacao, setLoadingSolicitacao] = useState(false);
 
-  const showNotification = (title: string, message: string) => {
+  let polygonCoords = (
+    limites.features[0].geometry.coordinates[0] as [number, number][]
+  ).map((coord) => ({ lat: coord[1], lng: coord[0] }));
+
+  const showNotification = (
+    title: string,
+    message: string,
+    variant: "primary" | "secondary" | "warning" | "success",
+    icon: string,
+  ) => {
     setNotificationTitle(title);
+    setNotificationVariant(variant);
     setNotificationMessage(message);
+    setNotificationIcon(icon);
     setNotificationOpen(true);
     setTimeout(() => {
       setNotificationOpen(false);
@@ -64,23 +96,52 @@ export function SolicitacaoMapa({
     }, 5000);
   };
 
-  const isPointInPolygon = (
-    point: google.maps.LatLng,
-    polygon: { lat: number; lng: number }[],
-  ) => {
-    let inside = false;
-    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-      const xi = polygon[i].lat,
-        yi = polygon[i].lng;
-      const xj = polygon[j].lat,
-        yj = polygon[j].lng;
-      const intersect =
-        yi > point.lng() !== yj > point.lng() &&
-        point.lat() < ((xj - xi) * (point.lng() - yi)) / (yj - yi) + xi;
-      if (intersect) inside = !inside;
-    }
-    return inside;
-  };
+  useEffect(() => {
+    const solicitacoesRef = collection(db, "solicitacoes");
+    const q = query(solicitacoesRef, orderBy("criadoEm", "desc"));
+
+    const unsubscribe = onSnapshot(
+      q,
+      (snapshot: QuerySnapshot<DocumentData>) => {
+        let solicitacoesData: Solicitacao[] = snapshot.docs.map((doc) => {
+          const data = doc.data() as any;
+
+          return {
+            id: doc.id,
+            lat: Number(data.lat),
+            lng: Number(data.lng),
+            tipo: data.tipo || "",
+            descricao: data.descricao || "",
+            bairro: data.bairro || "",
+            imageUrl: data.imageUrl || "",
+            status: (data.status as Solicitacao["status"]) || "pendente",
+            userId: data.userId || "",
+            cep: data.cep || "",
+            rua: data.rua || "",
+            numero: data.numero || "",
+          };
+        });
+
+        if (userId) {
+          solicitacoesData = solicitacoesData.filter(
+            (s) => s.userId === userId,
+          );
+        }
+
+        setSolicitacoes(solicitacoesData);
+      },
+      (error) => {
+        showNotification(
+          "Erro",
+          "Não foi possível carregar as solicitações do Firebase.",
+          "warning",
+          "warning",
+        );
+      },
+    );
+
+    return () => unsubscribe();
+  }, [userId]);
 
   const smoothZoom = (
     map: google.maps.Map,
@@ -98,48 +159,18 @@ export function SolicitacaoMapa({
     setTimeout(() => smoothZoom(map, targetZoom, step), 50);
   };
 
-  const handlePlacesChanged = () => {
-    if (!searchBox || !mapRef.current) return;
-
-    const places = searchBox.getPlaces();
-    if (!places || places.length === 0) return;
-
-    const place = places[0];
-    const map = mapRef.current;
-
-    if (place.geometry && place.geometry.location) {
-      const location = place.geometry.location;
-      const point = new google.maps.LatLng(location.lat(), location.lng());
-      const estanciaVelhaCoords = cidadeBounds["Estância Velha"];
-
-      if (!isPointInPolygon(point, estanciaVelhaCoords)) {
-        showNotification(
-          "Localização Inválida!",
-          "O local selecionado está fora dos limites do município de Estância Velha.",
-        );
-        return;
-      }
-
-      if (place.geometry.viewport) {
-        const boundsCenter = place.geometry.viewport.getCenter();
-        if (boundsCenter) {
-          map.panTo(boundsCenter);
-          smoothZoom(map, map.getZoom() || 15);
-        }
-      } else {
-        map.panTo(location);
-        smoothZoom(map, 17);
-      }
-    }
-  };
-
   const handleMapClick = (event: google.maps.MapMouseEvent) => {
     if (!event.latLng) return;
+
+    const lat = event.latLng.lat();
+    const lng = event.latLng.lng();
 
     if (!loggedIn) {
       return showNotification(
         "Erro ao fazer a solicitação.",
         "É necessário uma conta para fazer solicitações.",
+        "warning",
+        "warning",
       );
     }
 
@@ -152,62 +183,106 @@ export function SolicitacaoMapa({
     const polygon = new google.maps.Polygon({
       paths: cidadeBounds["Estância Velha"],
     });
-    const isInside = google.maps.geometry.poly.containsLocation(
-      event.latLng,
-      polygon,
-    );
 
-    if (isInside) {
-      setNewMarker({ lat: event.latLng.lat(), lng: event.latLng.lng() });
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+      if (status !== "OK" || !results || !results[0]) {
+        return showNotification(
+          "Erro",
+          "Não foi possível identificar o endereço. Clique mais próximo a uma via.",
+          "warning",
+          "warning",
+        );
+      }
+
+      const address = results[0].address_components;
+      const hasStreet = address.some((c) => c.types.includes("route"));
+
+      if (!hasStreet) {
+        return showNotification(
+          "Localização incompleta",
+          "Clique próximo a uma rua.",
+          "warning",
+          "warning",
+        );
+      }
+
+      setNewMarker({ lat, lng });
       setFormVisible(true);
-    } else {
-      showNotification(
-        "Localização Inválida!",
-        `Por favor, selecione um local dentro dos limites de ${bairroSelecionado || "Estância Velha"}.`,
-      );
-    }
+    });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async ({
+    bairro: bairroFinal,
+    rua: ruaFinal,
+    numero: numeroFinal,
+  }: {
+    bairro: string;
+    rua: string;
+    numero: string;
+  }) => {
     if (!newMarker) return;
-    const point = new google.maps.LatLng(newMarker.lat, newMarker.lng);
-    if (!isPointInPolygon(point, cidadeBounds["Estância Velha"])) {
-      showNotification(
-        "Localização Inválida!",
-        "Por favor, selecione um local dentro dos limites do município.",
-      );
-      return;
-    }
+    if (loadingSolicitacao) return;
 
-    let bairro = findNeighborhood(newMarker.lat, newMarker.lng);
-    if (bairro === "Desconhecido") {
-      if (!bairroSelecionado) {
+    try {
+      if (editingMarker) {
+        setLoadingSolicitacao(true);
+        await updateDoc(doc(db, "solicitacoes", editingMarker.id), {
+          tipo: tipo || "Não especificado",
+          descricao,
+          bairro: bairroFinal || editingMarker.bairro,
+          imageUrl,
+          status: editingMarker.status,
+        });
         showNotification(
-          "Localização Inválida!",
-          "Por favor, selecione o bairro de Estância Velha.",
+          "Sucesso",
+          "Sua solicitação foi atualizada com sucesso!",
+          "success",
+          "check_circle",
         );
-        return;
+      } else {
+        setLoadingSolicitacao(true);
+
+        await addDoc(collection(db, "solicitacoes"), {
+          lat: newMarker.lat,
+          lng: newMarker.lng,
+          tipo: tipo,
+          descricao,
+          bairro: bairroFinal,
+          imageUrl,
+          criadoEm: serverTimestamp(),
+          status: "em_analise",
+          userId: currentUser?.user?.uid || "",
+          cep,
+          rua: ruaFinal,
+          numero: numeroFinal,
+        });
+        showNotification(
+          "Sucesso",
+          "Sua solicitação foi criada com sucesso!",
+          "success",
+          "check_circle",
+        );
+        onNovaSolicitacao?.();
       }
-      bairro = bairroSelecionado;
+
+      setNewMarker(null);
+      setTipo("");
+      setDescricao("");
+      setImageUrl("");
+      setImageFile(null);
+      setFormVisible(false);
+      setEditingMarker(null);
+      setLoadingSolicitacao(false);
+    } catch (err) {
+      setLoadingSolicitacao(false);
+      showNotification(
+        "Ops!",
+        "Houve um problema ao salvar sua solicitação. Tente novamente.",
+        "warning",
+        "warning",
+      );
     }
-
-    const novaSolicitacao: Solicitacao = {
-      lat: newMarker.lat,
-      lng: newMarker.lng,
-      tipo: tipo || "Não especificado",
-      descricao,
-      imageUrl,
-      bairro,
-    };
-
-    setSolicitacoes((prev) => [...prev, novaSolicitacao]);
-    setNewMarker(null);
-    setTipo("");
-    setDescricao("");
-    setImageUrl("");
-    setImageFile(null);
-    setFormVisible(false);
-    setBairroSelecionado("");
   };
 
   const handleOnLoad = (map: google.maps.Map) => {
@@ -225,6 +300,8 @@ export function SolicitacaoMapa({
     if (mapRef.current) setZoom(mapRef.current.getZoom() || 0);
   };
 
+  const [searchValue, setSearchValue] = useState("");
+
   const toggleAside = () => {
     if (!formVisible) {
       setFormVisible(true);
@@ -235,6 +312,11 @@ export function SolicitacaoMapa({
       setDescricao("");
       setImageUrl("");
       setImageFile(null);
+      setSearchValue("");
+      setCep("");
+      setRua("");
+      setNumero("");
+      setBairro("");
     }
   };
 
@@ -258,8 +340,44 @@ export function SolicitacaoMapa({
 
   const polygonCenter = getPolygonCentroid(polygonCoords);
 
+  useEffect(() => {
+    if (!onOpenAside) return;
+
+    const opener = (shouldOpen: boolean) => {
+      if (shouldOpen && !loggedIn) {
+        showNotification(
+          "Erro ao fazer a solicitação.",
+          "É necessário uma conta para fazer solicitações.",
+          "warning",
+          "warning",
+        );
+        return;
+      }
+
+      if (shouldOpen) {
+        setNewMarker(null);
+        setTipo("");
+        setDescricao("");
+        setImageUrl("");
+        setImageFile(null);
+        setSearchValue("");
+        setCep("");
+        setRua("");
+        setNumero("");
+        setBairro("");
+      }
+
+      setFormVisible(shouldOpen);
+    };
+
+    onOpenAside.current = opener;
+    return () => {
+      if (onOpenAside) onOpenAside.current = null;
+    };
+  }, [onOpenAside, loggedIn]);
+
   if (loadError) return <div>Erro ao carregar o mapa</div>;
-  if (!isLoaded) return <div>Carregando mapa...</div>;
+  if (!isLoaded) return <p>Carregando...</p>;
 
   const mapOptions: google.maps.MapOptions = {
     restriction: {
@@ -273,6 +391,7 @@ export function SolicitacaoMapa({
     mapTypeControl: false,
     streetViewControl: false,
     fullscreenControl: false,
+    gestureHandling: "cooperative",
     styles: [
       {
         featureType: "administrative.locality",
@@ -287,49 +406,123 @@ export function SolicitacaoMapa({
       { featureType: "transit", stylers: [{ visibility: "off" }] },
     ],
   };
+
+  const handleDeleteMarker = async (marker: Solicitacao) => {
+    try {
+      await deleteDoc(doc(db, "solicitacoes", marker.id));
+      showNotification(
+        "Sucesso",
+        "Sua solicitação foi excluída com sucesso!",
+        "success",
+        "check_circle",
+      );
+      onNovaSolicitacao?.();
+    } catch (error) {
+      showNotification(
+        "Erro",
+        "Não foi possível excluir sua solicitação. Tente novamente.",
+        "warning",
+        "warning",
+      );
+    }
+  };
+
+  const handleConfirmStatusChange = async (
+  marker: Solicitacao,
+  novoStatus: Solicitacao["status"]
+) => {
+  try {
+    const ref = doc(db, "solicitacoes", marker.id);
+    await updateDoc(ref, { status: novoStatus });
+
+    showNotification(
+      "Status atualizado",
+      `A solicitação foi movida para "${novoStatus.replace("_", " ")}".`,
+      "success",
+      "check_circle"
+    );
+
+    onNovaSolicitacao?.();
+  } catch (err) {
+    showNotification(
+      "Erro",
+      "Não foi possível atualizar o status.",
+      "warning",
+      "warning"
+    );
+  }
+};
+
+
   return (
     <>
-      <div style={{ display: "flex", gap: "20px" }}>
-        <div style={{ position: "relative", flex: 1 }}>
-          <MapComponents
-            polygonCoords={polygonCoords}
-            polygonCenter={polygonCenter}
-            solicitacoes={solicitacoes}
-            zoom={zoom}
-            mapOptions={mapOptions}
-            handleMapClick={handleMapClick}
-            handleOnLoad={handleOnLoad}
-            handleZoomChanged={handleZoomChanged}
-            searchBox={searchBox}
-            setSearchBox={setSearchBox}
-            handlePlacesChanged={handlePlacesChanged}
-            local={local}
-          />
-          <AsideForm
-            formVisible={formVisible}
-            toggleAside={toggleAside}
-            tipo={tipo}
-            setTipo={setTipo}
-            descricao={descricao}
-            setDescricao={setDescricao}
-            imageFile={imageFile}
-            setImageFile={setImageFile}
-            imageUrl={imageUrl}
-            setImageUrl={setImageUrl}
-            newMarker={newMarker}
-            bairroSelecionado={bairroSelecionado}
-            setBairroSelecionado={setBairroSelecionado}
-            handleSubmit={handleSubmit}
-          />
-        </div>
-      </div>
+      <MapComponents
+      onChangeStatus={handleConfirmStatusChange}
+        onDeleteMarker={handleDeleteMarker}
+        setMarcadorAberto={setMarcadorAberto}
+        bairroSelecionado={bairro}
+        setBairroSelecionado={setBairro}
+        currentUserId={currentUser?.user?.uid || ""}
+        onEditMarker={(marker) => {
+          setEditingMarker(marker);
+          setNewMarker({ lat: marker.lat, lng: marker.lng });
+          setTipo(marker.tipo);
+          setDescricao(marker.descricao || "");
+          setImageUrl(marker.imageUrl || "");
+          setBairro(marker.bairro || "");
+          setFormVisible(true);
+        }}
+        polygonCoords={polygonCoords}
+        polygonCenter={polygonCenter}
+        solicitacoes={solicitacoes}
+        zoom={zoom}
+        mapOptions={mapOptions}
+        handleMapClick={handleMapClick}
+        handleOnLoad={handleOnLoad}
+        handleZoomChanged={handleZoomChanged}
+        marcadorAberto={marcadorAberto}
+      />
+
       <NotificationMap
+        icon={notificationIcon}
+        variant={notificationVariant}
         title={notificationTitle}
         isOpen={notificationOpen}
         message={notificationMessage}
         onClose={() => {
           setNotificationOpen(false);
           setNotificationMessage("");
+        }}
+      />
+      <AsideForm
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        cep={cep}
+        numero={numero}
+        setNumero={setNumero}
+        setCep={setCep}
+        rua={rua}
+        setRua={setRua}
+        isLoading={loadingSolicitacao}
+        formVisible={formVisible}
+        toggleAside={toggleAside}
+        tipo={tipo}
+        setTipo={setTipo}
+        descricao={descricao}
+        setDescricao={setDescricao}
+        imageFile={imageFile}
+        setImageFile={setImageFile}
+        imageUrl={imageUrl}
+        setImageUrl={setImageUrl}
+        newMarker={newMarker}
+        bairro={bairro}
+        setBairro={setBairro}
+        handleSubmit={({ bairro, rua, numero }) =>
+          handleSubmit({ bairro, rua, numero })
+        }
+        editingMarker={editingMarker}
+        onLocationSelect={(lat, lng) => {
+          setNewMarker({ lat, lng });
         }}
       />
     </>
