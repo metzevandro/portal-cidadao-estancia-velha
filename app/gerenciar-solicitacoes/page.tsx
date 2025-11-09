@@ -1,16 +1,13 @@
 "use client";
-
-import { useCallback, useEffect, useState, useRef } from "react";
-import { SolicitacaoMapa } from "@/components/mapa/Solicitação";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Page } from "design-system-zeroz";
-import { useUser } from "./_context";
-import { collection, getDocs } from "firebase/firestore";
+import { useUser } from "../_context";
 import { db } from "@/lib/firebase";
+import { collection, getDocs } from "firebase/firestore";
 import { StatusCard } from "@/components/card/card";
+import { SolicitacaoMapa } from "@/components/mapa/Solicitação";
 
-import "./globals.scss";
-
-export default function Home() {
+export default function GerenciarSolicitacoesPage() {
   const user = useUser();
 
   const [totalSolicitacoes, setTotalSolicitacoes] = useState(0);
@@ -47,13 +44,8 @@ export default function Home() {
 
   return (
     <Page
-      namePage="Bem-vindo, Estanciense!"
-      description="Crie sua solicitação à Prefeitura de Estância Velha!"
-      withActionPrimary={user.user ? true : false}
-      buttonContentPrimary="Adicionar Solicitação"
-      onClickActionPrimary={() => {
-        openAsideRef.current?.(true);
-      }}
+      namePage="Gerencie as Solicitações dos Cidadãos de Estância Velha"
+      description="Para gerenciar as solicitações, utilize o mapa abaixo clicando em cada solicitação. Para trocar de status, basta clicar no status desejado no card ao lado do mapa."
     >
       <section className="dashboard-layout">
         <div className="cards-container">
@@ -65,7 +57,7 @@ export default function Home() {
         </div>
 
         <SolicitacaoMapa
-          loggedIn={user.user ? true : false}
+          loggedIn={!!user}
           onNovaSolicitacao={fetchCounts}
           onOpenAside={openAsideRef}
         />
