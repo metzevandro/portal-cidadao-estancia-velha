@@ -58,7 +58,6 @@ export default function Home() {
       <section className="dashboard-layout">
         <div className="cards-container">
           <StatusCard title="Solicitações" count={totalSolicitacoes} />
-
           <StatusCard title="Em análise" count={totalEmAnalise} />
           <StatusCard title="Pendentes" count={totalPendente} />
           <StatusCard title="Concluídas" count={totalConcluida} />

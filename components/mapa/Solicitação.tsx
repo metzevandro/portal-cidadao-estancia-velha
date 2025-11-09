@@ -83,6 +83,14 @@ export function SolicitacaoMapa({
     variant: "primary" | "secondary" | "warning" | "success",
     icon: string,
   ) => {
+
+    console.log("[showNotification called]", {
+    title,
+    message,
+    variant,
+    icon,
+    stack: new Error().stack,
+  });
     if (title === '' && message === '') return;
     setNotificationTitle(title);
     setNotificationVariant(variant);
