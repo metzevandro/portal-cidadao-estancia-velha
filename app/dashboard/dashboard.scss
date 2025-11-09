@@ -1,0 +1,24 @@
+.dashboard-charts {
+  display: flex;
+  gap: 24px;
+
+  .chart-wrapper {
+    width: 50%;
+    height: 100%;
+
+    .card-root {
+      height: 100% !important;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard-charts {
+    gap: 16px;
+    flex-direction: column;
+
+    .chart-wrapper {
+      width: 100%;
+    }
+  }
+}
