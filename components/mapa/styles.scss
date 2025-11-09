@@ -1,0 +1,122 @@
+.aside-image-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.aside-image-preview {
+  height: 130px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.aside-image-upload {
+  width: 130px;
+  height: 130px;
+  border-radius: 8px;
+  border: 1px dashed #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  max-width: 120px;
+  max-height: 120px;
+  aspect-ratio: 1 / 1;
+
+  div {
+    gap: 4px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.aside-image-upload input {
+  display: none;
+}
+
+.endereco {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  align-items: flex-end;
+
+  .text-area-root {
+    width: 100%;
+  }
+}
+
+.image-preview {
+  display: flex-end;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--s-border-radius-medium);
+  max-height: 200px;
+}
+
+.informacoes-marcador img {
+  max-width: 100%;
+  display: block;
+}
+
+.aba-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-spacing-x-small);
+}
+
+.status {
+  width: fit-content;
+  border-radius: var(--s-border-radius-medium);
+  text-transform: capitalize;
+  padding: var(--s-spacing-nano) var(--s-spacing-xx-small);
+
+  &.concluida:hover {
+    background-color: #34d3991a;
+    border-color: #34d399;
+  }
+
+  &.pendente:hover {
+    background-color: #f973161a;
+    border-color: #f97316;
+  }
+
+  &.em_analise:hover {
+    background-color: #facc151a;
+    border-color: #facc15;
+  }
+  &.ativa {
+    &.em_analise {
+      background-color: #facc151a;
+      color: #facc15;
+      border-color: #facc15;
+    }
+
+    &.pendente {
+      background-color: #f973161a;
+      color: #f97316;
+    }
+
+    &.concluida {
+      background-color: #10b9811a;
+      color: #10b981;
+    }
+
+    &.rejeitada {
+      background-color: #ef44441a;
+      color: #ef4444;
+    }
+  }
+}
+
+.marker-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
