@@ -1,4 +1,4 @@
-import ESTANCIA_VELHA from "../mapAPI/estancia-velha-limites.json";
+import ESTANCIA_VELHA from "../mapAPI/estancia-velha.json";
 
 export const cidade = {
   "Estância Velha": ESTANCIA_VELHA,
