@@ -19,7 +19,13 @@ import {
 import ModalLogin from "@/components/modalLogin/modalLogin";
 import ModalCriarConta from "@/components/modalCriarConta/modalCriarConta";
 import { auth } from "@/lib/firebase";
-import { onAuthStateChanged, signOut, User } from "firebase/auth";
+import {
+  onAuthStateChanged,
+  signOut,
+  User,
+  getIdTokenResult,
+} from "firebase/auth";
+import { UserContext } from "./_context";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -27,17 +33,34 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const router = useRouter();
+  const pathname = usePathname();
+
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isCreateAccountOpen, setIsCreateAccountOpen] = useState(false);
   const [user, setUser] = useState<User | null>(null);
-  const pathname = usePathname();
+  const [isAdmin, setIsAdmin] = useState(false);
 
-  // Monitora login/logout do Firebase
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
+
+      if (!currentUser) {
+        setIsAdmin(false);
+        return;
+      }
+
+      try {
+        const idToken = await getIdTokenResult(currentUser, true);
+        const roleClaim = idToken.claims?.role;
+        const adminFlag = idToken.claims?.admin;
+
+        setIsAdmin(roleClaim === "admin" || adminFlag === true);
+      } catch (error) {
+        setIsAdmin(false);
+      }
     });
+
     return () => unsubscribe();
   }, []);
 
@@ -56,14 +79,11 @@ export default function Layout({ children }: LayoutProps) {
     return <Breadcrumb items={items} />;
   }, [pathname]);
 
-  if (pathname === "/auth/login" || pathname === "/auth/criar-conta") {
-    return <>{children}</>;
-  }
-
   const handleLogout = async () => {
     await signOut(auth);
-    console.log("Deslogado com sucesso");
-    router.push("/"); // opcional
+    setUser(null);
+    setIsAdmin(false);
+    router.push("/");
   };
 
   return (
@@ -71,19 +91,21 @@ export default function Layout({ children }: LayoutProps) {
       <AppShell>
         <Header onClick={handleToggleSidebar} breadcrumb={breadcrumb}>
           {user ? (
-            <HeaderProfile name={user.displayName || user.email || "Usuário"}>
-              <Dropdown
-                dropdown
-                children={
-                  <>
-                    <DropdownTitle content="Tema" />
-                    <DropdownItem typeIcon="sunny" content="Light" />
-                    <DropdownTitle content="Configurações" />
-                    <DropdownItem typeIcon="account_circle" content="Perfil" />
-                    <DropdownItem typeIcon="logout" content="Sair" onClick={handleLogout} />
-                  </>
-                }
-              />
+            <HeaderProfile
+              name={user.displayName || "Usuário"}
+              letter={user.displayName || "Usuário"}
+            >
+              <Dropdown dropdown>
+                <DropdownTitle content="Tema" />
+                <DropdownItem typeIcon="sunny" content="Light" />
+                <DropdownTitle content="Configurações" />
+                <DropdownItem typeIcon="account_circle" content="Perfil" />
+                <DropdownItem
+                  typeIcon="logout"
+                  content="Sair"
+                  onClick={handleLogout}
+                />
+              </Dropdown>
             </HeaderProfile>
           ) : (
             <div style={{ display: "flex", gap: "var(--s-spacing-xx-small)" }}>
@@ -111,7 +133,7 @@ export default function Layout({ children }: LayoutProps) {
           brandSize="lg"
           setToggleSidebar={handleToggleSidebar}
         >
-          <SidebarTitle title="Menu" />
+          <SidebarTitle title="Geral" />
           <SidebarItem
             title="Página Inicial"
             icon="home"
@@ -119,25 +141,57 @@ export default function Layout({ children }: LayoutProps) {
             onClick={() => router.push("/")}
             isActive={pathname === "/"}
           />
-          <SidebarTitle title="Mapa" />
+
+          <SidebarTitle title="Solicitações" />
           <SidebarItem
-            title="Solicitações"
-            icon="list"
+            title="Visão Geral"
+            icon="dashboard"
             fillIcon
-            onClick={() => router.push("/solicitacoes")}
-            isActive={pathname === "/solicitacoes"}
+            onClick={() => router.push("/dashboard")}
+            isActive={pathname === "/dashboard"}
           />
+          <SidebarItem
+            title="Minhas Solicitações"
+            icon="library_books"
+            fillIcon={false}
+            onClick={() => router.push("/minhas-solicitacoes")}
+            isActive={pathname === "/minhas-solicitacoes"}
+          />
+
+          {isAdmin && (
+            <>
+              <SidebarTitle title="Admin" />
+              <SidebarItem
+                title="Tipos de Solicitações"
+                icon="folder_open"
+                fillIcon={false}
+                onClick={() => router.push("/tipos-de-solicitacoes")}
+                isActive={pathname === "/tipos-de-solicitacoes"}
+              />
+              <SidebarItem
+                title="Gerenciar Solicitações"
+                icon="account_tree"
+                fillIcon={false}
+                onClick={() => router.push("/gerenciar-solicitacoes")}
+                isActive={pathname === "/gerenciar-solicitacoes"}
+              />
+            </>
+          )}
         </SideBar>
 
-        {children}
+        <UserContext.Provider value={{ user, isAdmin }}>
+          {children}
+        </UserContext.Provider>
       </AppShell>
 
       <ModalLogin
+        openCriarConta={() => setIsCreateAccountOpen(true)}
         hideModal={() => setIsLoginOpen(false)}
         isOpen={isLoginOpen}
       />
 
       <ModalCriarConta
+        openLogin={() => setIsLoginOpen(true)}
         hideModal={() => setIsCreateAccountOpen(false)}
         isOpen={isCreateAccountOpen}
       />
