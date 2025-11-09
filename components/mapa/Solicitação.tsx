@@ -22,7 +22,6 @@ import {
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useUser } from "@/app/_context";
-import { Skeleton } from "design-system-zeroz";
 
 const LIBRARIES = ["places"] as const;
 
@@ -84,6 +83,7 @@ export function SolicitacaoMapa({
     variant: "primary" | "secondary" | "warning" | "success",
     icon: string,
   ) => {
+    if (!title && !message) return;
     setNotificationTitle(title);
     setNotificationVariant(variant);
     setNotificationMessage(message);
@@ -428,36 +428,35 @@ export function SolicitacaoMapa({
   };
 
   const handleConfirmStatusChange = async (
-  marker: Solicitacao,
-  novoStatus: Solicitacao["status"]
-) => {
-  try {
-    const ref = doc(db, "solicitacoes", marker.id);
-    await updateDoc(ref, { status: novoStatus });
+    marker: Solicitacao,
+    novoStatus: Solicitacao["status"],
+  ) => {
+    try {
+      const ref = doc(db, "solicitacoes", marker.id);
+      await updateDoc(ref, { status: novoStatus });
 
-    showNotification(
-      "Status atualizado",
-      `A solicitação foi movida para "${novoStatus.replace("_", " ")}".`,
-      "success",
-      "check_circle"
-    );
+      showNotification(
+        "Status atualizado",
+        `A solicitação foi movida para "${novoStatus.replace("_", " ")}".`,
+        "success",
+        "check_circle",
+      );
 
-    onNovaSolicitacao?.();
-  } catch (err) {
-    showNotification(
-      "Erro",
-      "Não foi possível atualizar o status.",
-      "warning",
-      "warning"
-    );
-  }
-};
-
+      onNovaSolicitacao?.();
+    } catch (err) {
+      showNotification(
+        "Erro",
+        "Não foi possível atualizar o status.",
+        "warning",
+        "warning",
+      );
+    }
+  };
 
   return (
     <>
       <MapComponents
-      onChangeStatus={handleConfirmStatusChange}
+        onChangeStatus={handleConfirmStatusChange}
         onDeleteMarker={handleDeleteMarker}
         setMarcadorAberto={setMarcadorAberto}
         bairroSelecionado={bairro}

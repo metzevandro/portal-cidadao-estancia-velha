@@ -25,8 +25,10 @@ interface MapProps {
   marcadorAberto: boolean;
   setMarcadorAberto: (aberto: boolean) => void;
   onDeleteMarker: (marker: Solicitacao) => void;
-    onChangeStatus: (marker: Solicitacao, novoStatus: Solicitacao["status"]) => void;
-
+  onChangeStatus: (
+    marker: Solicitacao,
+    novoStatus: Solicitacao["status"],
+  ) => void;
 }
 
 export function MapComponents({
@@ -43,7 +45,7 @@ export function MapComponents({
   marcadorAberto,
   setMarcadorAberto,
   onDeleteMarker,
-  onChangeStatus
+  onChangeStatus,
 }: MapProps) {
   const [openMarkerId, setOpenMarkerId] = useState<string | null>(null);
   const informacoesRef = useRef<HTMLDivElement>(null);
@@ -122,15 +124,14 @@ export function MapComponents({
   };
 
   const handleConfirmStatusChange = () => {
-  if (!markerToChangeStatus || !novoStatusTemp) return;
+    if (!markerToChangeStatus || !novoStatusTemp) return;
 
-  onChangeStatus(markerToChangeStatus, novoStatusTemp);
+    onChangeStatus(markerToChangeStatus, novoStatusTemp);
 
-  setModalStatusOpen(false);
-  setMarkerToChangeStatus(null);
-  setNovoStatusTemp(null);
-};
-
+    setModalStatusOpen(false);
+    setMarkerToChangeStatus(null);
+    setNovoStatusTemp(null);
+  };
 
   return (
     <>
