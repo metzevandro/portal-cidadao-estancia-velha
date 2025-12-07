@@ -58,6 +58,10 @@ export default function ModalCriarConta({
       await signInWithEmailAndPassword(auth, email, senha);
 
       hideModal();
+
+      setNome("");
+      setEmail("");
+      setSenha("");
     } catch (error: any) {
       console.error("Erro ao criar conta:", error.message);
     }

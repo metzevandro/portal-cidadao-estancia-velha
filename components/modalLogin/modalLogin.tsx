@@ -46,6 +46,8 @@ export default function ModalLogin({
       console.log("ROLE do usuário ->", data?.role);
 
       hideModal();
+      setEmail("");
+      setSenha("");
     } catch (error: any) {
       console.error("Erro ao fazer login:", error.message);
     }
