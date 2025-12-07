@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
+
 import {
   AppShell,
   SideBar,
@@ -96,10 +97,7 @@ export default function Layout({ children }: LayoutProps) {
               letter={user.displayName || "Usuário"}
             >
               <Dropdown dropdown>
-                <DropdownTitle content="Tema" />
-                <DropdownItem typeIcon="sunny" content="Light" />
                 <DropdownTitle content="Configurações" />
-                <DropdownItem typeIcon="account_circle" content="Perfil" />
                 <DropdownItem
                   typeIcon="logout"
                   content="Sair"

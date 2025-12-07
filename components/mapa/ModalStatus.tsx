@@ -12,6 +12,14 @@ interface ModalStatusSolicitacaoProps {
   };
 }
 
+const formatStatus = (status: string) => {
+  if (!status) return "";
+  
+  return status
+    .replace(/_/g, " ") 
+    .replace(/\b\w/g, (char) => char.toUpperCase()); 
+};
+
 export function ModalStatusSolicitacao({
   isOpen,
   onClose,
@@ -19,6 +27,8 @@ export function ModalStatusSolicitacao({
   solicitacao,
 }: ModalStatusSolicitacaoProps) {
   if (!solicitacao) return null;
+
+  const statusFormatado = formatStatus(solicitacao.status);
 
   return (
     <Modal
@@ -32,7 +42,7 @@ export function ModalStatusSolicitacao({
             Deseja realmente alterar o status da solicitação{" "}
             <strong>{solicitacao.nome}</strong>?
             <br /> <br />
-            Status atual: <strong>{solicitacao.status}</strong>
+            Status atual: <strong>{statusFormatado}</strong>
           </p>
         </ContentModal>
       }

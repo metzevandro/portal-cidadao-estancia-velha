@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Pizza } from "@/charts/Pizza/Pizza";
+import { Pizza } from "@/components/charts/Pizza/Pizza";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { Page } from "design-system-zeroz";
-import Barra from "@/charts/Barra/Barra";
+import Barra from "@/components/charts/Barra/Barra";
 import "./dashboard.scss";
 
 export default function page() {
