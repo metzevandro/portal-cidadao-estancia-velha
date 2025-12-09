@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portal do Cidadão - Estância Velha
 
-## Getting Started
+Portal web desenvolvido com Next.js para facilitar o acesso dos cidadãos de Estância Velha a serviços e informações municipais. Uma plataforma moderna e responsiva que centraliza informações e serviços públicos em um único lugar.
 
-First, run the development server:
+## 📖 Sobre o Projeto
+
+O **Portal do Cidadão - Estância Velha** é uma plataforma digital que funciona como um hub centralizado de serviços e informações públicas para os cidadãos do município.
+
+### Objetivos Principais
+
+- **Democratizar o acesso** a informações municipais e serviços públicos
+- **Modernizar a comunicação** entre prefeitura e cidadãos
+- **Facilitar procedimentos** administrativos através de uma interface intuitiva
+- **Centralizar informações** em um único lugar de fácil acesso
+
+### Características
+
+- **Interface Responsiva**: Funciona perfeitamente em desktop, tablet e mobile
+- **Rápido e Moderno**: Construído com Next.js para máxima performance
+- **Amigável ao Usuário**: Design intuitivo acessível para todos os públicos
+- **Escalável**: Arquitetura preparada para crescimento e novas funcionalidades
+
+### Stack Tecnológico
+
+- **Framework**: Next.js
+- **Linguagem**: TypeScript/JavaScript
+- **Estilização**: Otimização de fontes com next/font
+
+## 📋 Pré-requisitos
+
+- Node.js 16.x ou superior
+- npm, yarn, pnpm ou bun instalados
+
+## 🚀 Como Baixar e Inicializar
+
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/metzevandro/portal-cidadao-estancia-velha.git
+
+cd portal-cidadao-estancia-velha
+```
+
+### 2. Instalar dependências
+
+```bash
+npm install
+# ou
+yarn install
+# ou
+pnpm install
+# ou
+bun install
+```
+
+### 3. Executar o servidor de desenvolvimento
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
-# or
+# ou
 pnpm dev
-# or
+# ou
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 4. Abrir no navegador
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Acesse [http://localhost:3000](http://localhost:3000) para ver o projeto em funcionamento.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📝 Desenvolvimento
 
-## Learn More
+- Edite as páginas em `app/page.tsx`
+- O projeto recarrega automaticamente conforme você faz alterações
+- O projeto utiliza [next/font](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) para otimização de fontes
 
-To learn more about Next.js, take a look at the following resources:
+## 🔗 Recursos Úteis
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Documentação Next.js](https://nextjs.org/docs)
+- [Tutorial Next.js](https://nextjs.org/learn)
+- [Repositório Next.js](https://github.com/vercel/next.js)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📦 Build para Produção
 
-## Deploy on Vercel
+```bash
+npm run build
+npm start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
